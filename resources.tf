@@ -12,7 +12,7 @@ resource "hcloud_server" "main" {
   location    = "hel1"
 
   public_net {
-    ipv4_enabled = false
+    ipv4_enabled = true
     ipv6_enabled = true
   }
 
@@ -58,34 +58,4 @@ resource "hcloud_firewall" "tailscale" {
       "100.64.0.0/10"
     ]
   }
-
-  rule {
-    direction = "out"
-    protocol  = "tcp"
-    port      = "1-65535"
-    destination_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
-  }
-
-  rule {
-    direction = "out"
-    protocol  = "udp"
-    port      = "1-65535"
-    destination_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
-  }
-
-  rule {
-    direction = "out"
-    protocol  = "icmp"
-    destination_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
-  }
-
 }
