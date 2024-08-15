@@ -40,22 +40,5 @@ resource "hcloud_server" "main" {
 
 resource "hcloud_firewall" "tailscale" {
   name = "only-tailscale"
-
-  rule {
-    direction = "in"
-    protocol  = "udp"
-    port      = "3478"
-    source_ips = [
-      "100.64.0.0/10"
-    ]
-  }
-
-  rule {
-    direction = "in"
-    protocol  = "udp"
-    port      = "80-85"
-    source_ips = [
-      "100.64.0.0/10"
-    ]
-  }
+  # this will deny all inbound traffic and allow all outbound
 }
